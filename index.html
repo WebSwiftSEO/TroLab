@@ -1,1 +1,160 @@
-<!DOCTYPE html><html><head><title>TroLabs</title></head><body><h1>Welcome to TroLabs</h1><a href='demo.html'>Demo</a> | <a href='info.html'>Info</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TroLab - A decentralized experimental lab demo for running experiments, sharing results, and collaborating.">
+    <meta name="keywords" content="TroLab, decentralized, experimental lab, PWA, open source">
+    <meta name="author" content="TroLab Team">
+    <!-- Open Graph -->
+    <meta property="og:title" content="TroLab - Decentralized Experimental Lab">
+    <meta property="og:description" content="Run experiments, share results, and collaborate with TroLab, a decentralized PWA prototype.">
+    <meta property="og:image" content="/assets/logo.png">
+    <meta property="og:url" content="https://webswiftseo.github.io/TC-Sharing-App/">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TroLab - Decentralized Experimental Lab">
+    <meta name="twitter:description" content="Run experiments, share results, and collaborate with TroLab, a decentralized PWA prototype.">
+    <meta name="twitter:image" content="/assets/logo.png">
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "TroLab",
+        "description": "A decentralized experimental lab demo for running experiments, sharing results, and collaborating.",
+        "url": "https://webswiftseo.github.io/TC-Sharing-App/"
+    }
+    </script>
+    <title>TroLab - Decentralized Experimental Lab</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <a href="/index.html" aria-label="Go to TroLab Home">
+            <img src="/assets/logo.png" alt="TroLab Logo" class="logo">
+        </a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to TroLab</h1>
+            <p>Decentralized Experimental Lab Demo</p>
+            <div class="cta-buttons">
+                <a href="/demo.html" class="btn">Demo</a>
+                <a href="/info.html" class="btn">Info</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search TroLab..." aria-label="Search TroLab">
+                <button onclick="searchContent()" aria-label="Search">🔍</button>
+            </div>
+            <button onclick="sharePage()" class="btn share-btn" aria-label="Share TroLab">Share</button>
+            <button id="installBtn" onclick="installPWA()" class="btn install-btn" aria-label="Install TroLab PWA">Install PWA</button>
+            <a href="https://github.com/webswiftseo/TC-Sharing-App" target="_blank" class="btn github-btn" aria-label="View TroLab on GitHub">GitHub Repo</a>
+        </div>
+    </footer>
+
+    <script>
+        let deferredPrompt;
+
+        // PWA Install Prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('Install prompt captured');
+            // Show the install button if not already installed
+            if (!window.matchMedia('(display-mode: standalone)').matches) {
+                document.getElementById('installBtn').style.display = 'inline-block';
+            }
+        });
+
+        // Check if app is already installed
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA installed successfully');
+            document.getElementById('installBtn').style.display = 'none';
+        });
+
+        // Install PWA
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(choice => {
+                    if (choice.outcome === 'accepted') {
+                        console.log('PWA installed successfully');
+                    } else {
+                        console.log('PWA installation declined');
+                    }
+                    // Hide the install button instead of setting deferredPrompt to null
+                    document.getElementById('installBtn').style.display = 'none';
+                });
+            } else {
+                alert('Install option not available. Ensure your browser supports PWA installation.');
+            }
+        }
+
+        // Share Page
+        function sharePage() {
+            const shareData = {
+                title: 'TroLab - Decentralized Experimental Lab',
+                text: 'Run experiments, share results, and collaborate with TroLab, a decentralized PWA prototype.',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                navigator.share(shareData).then(() => {
+                    console.log('Shared successfully');
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                    fallbackShare(shareData);
+                });
+            } else {
+                fallbackShare(shareData);
+            }
+        }
+
+        function fallbackShare(shareData) {
+            navigator.clipboard.writeText(shareData.url).then(() => {
+                alert('Link copied to clipboard: ' + shareData.url);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
+        // Search Content
+        function searchContent() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!query) return;
+            const content = document.body.innerText.toLowerCase();
+            if (content.includes(query)) {
+                // Highlight the keyword (basic implementation)
+                const regex = new RegExp(query, 'gi');
+                const main = document.querySelector('main');
+                main.innerHTML = main.innerHTML.replace(regex, match => `<mark>${match}</mark>`);
+                // Scroll to first match
+                const firstMatch = document.querySelector('mark');
+                if (firstMatch) firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert('No matches found for: ' + query);
+            }
+        }
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').then(reg => {
+                console.log('Service Worker registered:', reg);
+            }).catch(err => {
+                console.error('Service Worker registration failed:', err);
+            });
+        }
+    </script>
+</body>
+</html>
