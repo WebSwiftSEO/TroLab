@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://webswiftseo.github.io/TC-Sharing-App/sitemap.xml
