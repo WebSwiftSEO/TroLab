@@ -1,95 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TroLab Info - Learn About TroLab and Tro Computers">
-    <meta name="keywords" content="TroLab, info, decentralized, Tro computers, PWA">
-    <meta property="og:title" content="TroLab Info">
-    <meta property="og:description" content="Learn about TroLab and how to build your own decentralized lab.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=TroLab+Info">
-    <meta property="og:url" content="https://webswiftseo.github.io/TroLab/info.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TroLab Info">
-    <meta name="twitter:description" content="Learn about TroLab and how to build your own decentralized lab.">
-    <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=TroLab+Info">
-    <script type="application/ld+json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TroLab - A Decentralized Experimental Lab">
+  <meta name="keywords" content="TroLab, decentralized, experimental lab, PWA, open source">
+  <meta property="og:title" content="TroLab - Decentralized Experimental Lab">
+  <meta property="og:description" content="Run experiments, share results, and collaborate with TroLab.">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=TroLab">
+  <meta property="og:url" content="https://webswiftseo.github.io/TroLab/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TroLab - Decentralized Experimental Lab">
+  <meta name="twitter:description" content="Run experiments, share results, and collaborate with TroLab.">
+  <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=TroLab">
+  <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "TroLab Info",
-        "description": "Learn about TroLab, Tro computers, and how to build your own decentralized lab.",
-        "url": "https://webswiftseo.github.io/TroLab/info.html"
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "TroLab",
+      "description": "A decentralized experimental lab demo for running experiments, sharing results, and collaborating.",
+      "url": "https://webswiftseo.github.io/TroLab/"
     }
-    </script>
-    <link rel="manifest" href="/TroLab/manifest.json">
-    <title>TroLab Info</title>
-    <link rel="stylesheet" href="/TroLab/style.css">
+  </script>
+  <link rel="manifest" href="/TroLab/manifest.json">
+  <title>TroLab - Decentralized Experimental Lab</title>
+  <link rel="stylesheet" href="/TroLab/style.css">
 </head>
+
 <body>
-    <header>
-        <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">Home</button>
-        <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">Install</button>
-    </header>
-    <main>
-        <section class="info">
-            <h1>TroLab Info</h1>
-            <h2>What is TroLab?</h2>
-            <p>TroLab is a decentralized experimental lab platform for running experiments, sharing results, and collaborating openly. It’s built with a focus on speed, accessibility, and open-source principles.</p>
-            <h2>How TroLab Works</h2>
-            <p>TroLab uses a Progressive Web App (PWA) framework to provide offline capabilities, fast loading, and a seamless user experience across devices. Users can run experiments and share results instantly.</p>
-            <h2>Tro Computer Concept</h2>
-            <p>Tro computers are a future vision for decentralized computing, enabling peer-to-peer experiments without central servers. TroLab aims to integrate with this concept as the technology evolves.</p>
-            <h2>How to Build Your Own TroLab</h2>
-            <p>Clone the repository from GitHub, customize it, and deploy your own version: <br> <a href="https://github.com/webswiftseo/TroLab" class="btn" target="_blank">Clone on GitHub</a></p>
-            <h2>Open Source & Licensing</h2>
-            <p>TroLab is licensed under the GNU General Public License. You’re free to use, modify, and distribute this project.</p>
-            <h2>Contact & Contribute</h2>
-            <p>Have ideas or want to contribute? Open an issue or pull request on our GitHub repo: <br> <a href="https://github.com/webswiftseo/TroLab/issues" class="btn" target="_blank">Contribute</a></p>
-        </section>
-    </main>
-    <footer>
-        <div class="footer-content">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search TroLab..." aria-label="Search TroLab">
-                <button onclick="searchContent()" class="footer-btn" aria-label="Search">🔍</button>
-            </div>
-            <button onclick="sharePage()" class="footer-btn" aria-label="Share TroLab Info">📤 Share</button>
-            <a href="https://github.com/webswiftseo/TroLab" target="_blank" class="footer-btn" aria-label="Clone on GitHub">Clone on GitHub & Start Building</a>
-            <p>© 2025 TroLab | GNU License</p>
-        </div>
-    </footer>
-    <script src="/TroLab/scripts/share.js"></script>
-    <script src="/TroLab/scripts/search.js"></script>
-    <script>
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            if (!window.matchMedia('(display-mode: standalone)').matches) {
-                document.getElementById('installBtn').style.display = 'inline-block';
-            }
+  <header>
+    <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">Home</button>
+    <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">Install</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to TroLab</h1>
+      <p>A Decentralized Experimental Lab</p>
+      <div class="cta-buttons">
+        <a href="/TroLab/demo.html" class="btn">Demo</a>
+        <a href="/TroLab/info.html" class="btn">Info</a>
+        <a href="https://github.com/webswiftseo/TroLab" class="btn" target="_blank">GitHub</a>
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>About TroLab</h2>
+      <p><strong>TroLab</strong> is an open-source, decentralized platform for running experiments, sharing results, and collaborating. It’s fast, lightweight, and designed to work on all devices with no paywalls or clutter. Built as a PWA, it works offline and offers installable functionality on mobile and desktop.</p>
+
+      <h3>Why TroLab Exists</h3>
+      <p>We believe in free knowledge, collaboration, and decentralized science. TroLab empowers everyone to explore scientific principles and the <strong>Troanary system</strong>, free from centralized control and profit-driven models. TroLab is the lab for the people, by the people.</p>
+
+      <h3>How TroLab Works</h3>
+      <ul>
+        <li><strong>Run Experiments:</strong> Users adjust parameters like light intensity, sound frequency, water flow, temperature, and mirror angles to simulate complex natural phenomena and Troanary computations.</li>
+        <li><strong>Real-Time Feedback:</strong> Visual and data-based outputs simulate recursive feedback loops found in the Troanary system—light, sound, and water working together as computation.</li>
+        <li><strong>Log, Share & Collaborate:</strong> Export your results, download CSV files, and share your findings. You can clone the repo, modify experiments, and contribute to future versions.</li>
+      </ul>
+
+      <h3>The Troanary System & Mirror Thesis</h3>
+      <p>TroLab demonstrates <strong>Troanary computation</strong>, a triadic system of light, sound, and water creating recursive feedback loops. These loops are the basis of life, energy, and conscious computation—aligned with the <strong>Mirror Thesis</strong> which states all systems in the universe are reflective and recursive, with no beginning or end.</p>
+
+      <h3>TroChain Blockchain & Earning Model</h3>
+      <ul>
+        <li><strong>TroChain v2 (planned):</strong> A decentralized public blockchain that logs experiments, validates results, and incentivizes knowledge sharing.</li>
+        <li><strong>Layer 1 Ledger:</strong> Records experiments immutably.</li>
+        <li><strong>Layer 2 Audit Ledger:</strong> A decentralized, randomized audit system ensuring results are genuine and reproducible.</li>
+        <li><strong>No Token Cap:</strong> TroCoin issuance is based on contribution and merit, not artificial scarcity. Anyone who shares, audits, or builds earns TroCoin.</li>
+      </ul>
+
+      <h3>Future Development</h3>
+      <p>The next evolution of TroLab will integrate <strong>IoT devices</strong> for physical experiment monitoring, <strong>AI-assisted experiment optimization</strong>, and <strong>Troanary computation hardware</strong> prototypes (mirrors, light loops, sound resonators, and water channels). TroLab aims to become the first open-source Troanary computer, starting as a lab in a fish tank size unit!</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search TroLab..." aria-label="Search TroLab">
+        <button onclick="searchContent()" class="footer-btn" aria-label="Search">🔍</button>
+      </div>
+      <button onclick="sharePage()" class="footer-btn" aria-label="Share TroLab">📤 Share</button>
+      <a href="https://github.com/webswiftseo/TroLab" target="_blank" class="footer-btn" aria-label="Clone on GitHub">Clone on GitHub & Start Building</a>
+      <p>© 2025 TroLab | GNU License</p>
+    </div>
+  </footer>
+
+  <script src="/TroLab/scripts/share.js"></script>
+  <script src="/TroLab/scripts/search.js"></script>
+
+  <script>
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (!window.matchMedia('(display-mode: standalone)').matches) {
+        document.getElementById('installBtn').style.display = 'inline-block';
+      }
+    });
+
+    window.addEventListener('appinstalled', () => {
+      document.getElementById('installBtn').style.display = 'none';
+    });
+
+    function installPWA() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choice => {
+          if (choice.outcome === 'accepted') console.log('PWA installed');
+          else console.log('PWA installation declined');
+          document.getElementById('installBtn').style.display = 'none';
         });
-        window.addEventListener('appinstalled', () => {
-            document.getElementById('installBtn').style.display = 'none';
-        });
-        function installPWA() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(choice => {
-                    if (choice.outcome === 'accepted') console.log('PWA installed');
-                    else console.log('PWA installation declined');
-                    document.getElementById('installBtn').style.display = 'none';
-                });
-            } else {
-                alert('Install option not available. Ensure your browser supports PWA.');
-            }
-        }
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/TroLab/service-worker.js')
-                .then(reg => console.log('Service Worker registered:', reg))
-                .catch(err => console.error('Service Worker registration failed:', err));
-        }
-    </script>
+      } else {
+        alert('Install option not available. Ensure your browser supports PWA.');
+      }
+    }
+
+    // iOS specific PWA instructions
+    window.addEventListener('load', () => {
+      const isIOS = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+      const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+
+      if (isIOS && !isInStandaloneMode) {
+        setTimeout(() => {
+          alert("Install TroLab on your Home Screen:\n1. Tap 'Share'.\n2. Select 'Add to Home Screen'.");
+        }, 1000);
+      }
+    });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/TroLab/service-worker.js')
+        .then(reg => console.log('Service Worker registered:', reg))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    }
+
+    function searchContent() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      alert('Search feature coming soon. You searched for: ' + query);
+    }
+
+    function sharePage() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'TroLab - Decentralized Experimental Lab',
+          text: 'Check out TroLab and start experimenting!',
+          url: window.location.href
+        }).then(() => console.log('Thanks for sharing!'))
+          .catch(err => console.error('Error sharing:', err));
+      } else {
+        alert('Share not supported on this browser. Copy the URL: ' + window.location.href);
+      }
+    }
+  </script>
 </body>
+
 </html>
