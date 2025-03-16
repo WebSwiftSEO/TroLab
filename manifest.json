@@ -4,5 +4,18 @@
     "start_url": "/TroLab/index.html",
     "display": "standalone",
     "background_color": "#1a1a1a",
-    "theme_color": "#ffa500"
+    "theme_color": "#ffa500",
+    "description": "A Decentralized Experimental Lab powered by Troanary principles.",
+    "icons": [
+        {
+            "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAA... (Base64 for 192x192)",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAKACAMAAAAKopbrAAAA... (Base64 for 512x512)",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }
