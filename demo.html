@@ -1,128 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TroLab Demo - Run Decentralized Experiments">
-    <meta name="keywords" content="TroLab, demo, experiments, decentralized, PWA">
-    <meta property="og:title" content="TroLab Demo">
-    <meta property="og:description" content="Run experiments with TroLab and share your results.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=TroLab+Demo">
-    <meta property="og:url" content="https://webswiftseo.github.io/TroLab/demo.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TroLab Demo">
-    <meta name="twitter:description" content="Run experiments with TroLab and share your results.">
-    <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=TroLab+Demo">
-    <script type="application/ld+json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TroLab Demo - Run Decentralized Experiments">
+  <meta name="keywords" content="TroLab, demo, experiments, decentralized, PWA">
+  <meta property="og:title" content="TroLab Demo">
+  <meta property="og:description" content="Run experiments with TroLab and share your results.">
+  <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...">
+  <meta property="og:url" content="https://webswiftseo.github.io/TroLab/demo.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TroLab Demo">
+  <meta name="twitter:description" content="Run experiments with TroLab and share your results.">
+  <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "TroLab Demo",
-        "description": "Run decentralized experiments with TroLab.",
-        "url": "https://webswiftseo.github.io/TroLab/demo.html"
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "TroLab Demo",
+      "description": "Run decentralized experiments with TroLab.",
+      "url": "https://webswiftseo.github.io/TroLab/demo.html"
     }
-    </script>
-    <link rel="manifest" href="/TroLab/manifest.json">
-    <title>TroLab Demo</title>
-    <link rel="stylesheet" href="/TroLab/style.css">
+  </script>
+  <link rel="manifest" href="/TroLab/manifest.json">
+  <title>TroLab Demo</title>
+  <link rel="stylesheet" href="/TroLab/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-    <header>
-        <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">Home</button>
-        <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">Install</button>
-    </header>
-    <main>
-        <section class="demo">
-            <h1>TroLab Demo</h1>
-            <p>Run experiments by adjusting the parameters below.</p>
-            <div class="experiment-controls">
-                <label for="lightIntensity">Light Intensity (0-100): <span id="lightValue">50</span></label>
-                <input type="range" id="lightIntensity" min="0" max="100" value="50" aria-label="Light Intensity Slider">
-                <label for="soundFrequency">Sound Frequency (20-20000 Hz): <span id="soundValue">1000 Hz</span></label>
-                <input type="range" id="soundFrequency" min="20" max="20000" value="1000" aria-label="Sound Frequency Slider">
-                <label for="waterFlow">Water Flow Rate (0-10): <span id="waterValue">5</span></label>
-                <input type="range" id="waterFlow" min="0" max="10" step="0.1" value="5" aria-label="Water Flow Rate Slider">
-            </div>
-            <button onclick="runExperiment()" class="btn run-btn" aria-label="Run Experiment">Run Experiment</button>
-            <div id="experimentOutput" class="output">
-                <p>Experiment Results:</p>
-                <p id="resultText">Adjust parameters and click "Run Experiment" to see results.</p>
-                <button onclick="logResults()" class="btn log-btn" aria-label="Log Results">Log Results</button>
-                <button onclick="downloadResults()" class="btn download-btn" aria-label="Download Results">Download CSV</button>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div class="footer-content">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search TroLab..." aria-label="Search TroLab">
-                <button onclick="searchContent()" class="footer-btn" aria-label="Search">🔍</button>
-            </div>
-            <button onclick="sharePage()" class="footer-btn" aria-label="Share TroLab Demo">📤 Share</button>
-            <a href="https://github.com/webswiftseo/TroLab" target="_blank" class="footer-btn" aria-label="Clone on GitHub">Clone on GitHub & Start Building</a>
-            <p>© 2025 TroLab | GNU License</p>
+  <header>
+    <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">Home</button>
+    <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">Install</button>
+  </header>
+
+  <main>
+    <section class="demo">
+      <h1>TroLab Experiment Demo</h1>
+      <p>Adjust the inputs and run an experiment. View your results below.</p>
+
+      <div class="experiment-controls">
+        <label for="lightIntensity">Light Intensity (0-100): <span id="lightValue">50</span></label>
+        <input type="range" id="lightIntensity" min="0" max="100" value="50">
+        
+        <label for="soundFrequency">Sound Frequency (20-20000 Hz): <span id="soundValue">1000 Hz</span></label>
+        <input type="range" id="soundFrequency" min="20" max="20000" value="1000">
+        
+        <label for="waterFlow">Water Flow Rate (0-10): <span id="waterValue">5</span></label>
+        <input type="range" id="waterFlow" min="0" max="10" step="0.1" value="5">
+      </div>
+
+      <button onclick="runExperiment()" class="btn run-btn">Run Experiment</button>
+
+      <div class="output">
+        <h3>Experiment Output</h3>
+        <canvas id="lightChart" width="400" height="200"></canvas>
+        <canvas id="soundChart" width="400" height="200"></canvas>
+        <canvas id="waterChart" width="400" height="200"></canvas>
+        <div id="colorOutput" style="width:100px; height:100px; margin: 20px auto; border-radius: 12px; border: 2px solid #ffa500;"></div>
+
+        <div id="experimentSummary" class="info" style="margin-top: 1rem;">
+          <p><strong>Summary</strong></p>
+          <p id="resultText">Run an experiment to see results.</p>
         </div>
-    </footer>
-    <script src="/TroLab/scripts/share.js"></script>
-    <script src="/TroLab/scripts/search.js"></script>
-    <script>
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            if (!window.matchMedia('(display-mode: standalone)').matches) {
-                document.getElementById('installBtn').style.display = 'inline-block';
-            }
+
+        <button onclick="logResults()" class="btn log-btn">Log Results</button>
+        <button onclick="downloadResults()" class="btn download-btn">Download CSV</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search TroLab...">
+        <button onclick="searchContent()" class="footer-btn">🔍</button>
+      </div>
+      <button onclick="sharePage()" class="footer-btn">📤 Share</button>
+      <a href="https://github.com/webswiftseo/TroLab" target="_blank" class="footer-btn">Clone on GitHub</a>
+      <p>© 2025 TroLab | GNU License</p>
+    </div>
+  </footer>
+
+  <script src="/TroLab/scripts/share.js"></script>
+  <script src="/TroLab/scripts/search.js"></script>
+  <script>
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (!window.matchMedia('(display-mode: standalone)').matches) {
+        document.getElementById('installBtn').style.display = 'inline-block';
+      }
+    });
+
+    window.addEventListener('appinstalled', () => {
+      document.getElementById('installBtn').style.display = 'none';
+    });
+
+    function installPWA() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choice => {
+          document.getElementById('installBtn').style.display = 'none';
         });
-        window.addEventListener('appinstalled', () => {
-            document.getElementById('installBtn').style.display = 'none';
+      } else {
+        alert('Install option not available. Ensure your browser supports PWA.');
+      }
+    }
+
+    // Graph data containers
+    const lightData = [];
+    const soundData = [];
+    const waterData = [];
+    const labels = [];
+
+    // Create Chart.js graphs
+    const lightChartCtx = document.getElementById('lightChart').getContext('2d');
+    const soundChartCtx = document.getElementById('soundChart').getContext('2d');
+    const waterChartCtx = document.getElementById('waterChart').getContext('2d');
+
+    const lightChart = new Chart(lightChartCtx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Light Intensity',
+          data: lightData,
+          borderWidth: 2
+        }]
+      }
+    });
+
+    const soundChart = new Chart(soundChartCtx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Sound Frequency (Hz)',
+          data: soundData,
+          borderWidth: 2
+        }]
+      }
+    });
+
+    const waterChart = new Chart(waterChartCtx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Water Flow Rate',
+          data: waterData,
+          borderWidth: 2
+        }]
+      }
+    });
+
+    function runExperiment() {
+      const light = document.getElementById('lightIntensity').value;
+      const sound = document.getElementById('soundFrequency').value;
+      const water = document.getElementById('waterFlow').value;
+
+      const time = new Date().toLocaleTimeString();
+      labels.push(time);
+      lightData.push(light);
+      soundData.push(sound);
+      waterData.push(water);
+
+      lightChart.update();
+      soundChart.update();
+      waterChart.update();
+
+      const colorHex = generateColorHex(light, sound, water);
+      document.getElementById('colorOutput').style.backgroundColor = colorHex;
+
+      const resultText = `
+        Time: ${time}
+        Light Intensity: ${light}
+        Sound Frequency: ${sound} Hz
+        Water Flow: ${water}
+        Computed Color: ${colorHex}
+      `;
+      document.getElementById('resultText').textContent = resultText.trim();
+
+      localStorage.setItem('experimentResult', resultText);
+    }
+
+    function generateColorHex(light, sound, water) {
+      const r = Math.min(255, Math.round(light * 2.55));
+      const g = Math.min(255, Math.round(sound / 78.43)); // Scale 20-20000 Hz
+      const b = Math.min(255, Math.round(water * 25.5));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function logResults() {
+      const result = document.getElementById('resultText').textContent;
+      alert('Logged: ' + result);
+    }
+
+    function downloadResults() {
+      const result = document.getElementById('resultText').textContent;
+      const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(result.replace(/\n/g, ','));
+      const link = document.createElement('a');
+      link.setAttribute('href', csvContent);
+      link.setAttribute('download', 'experiment-results.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/TroLab/service-worker.js')
+        .then(reg => console.log('Service Worker registered:', reg))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    }
+
+    function searchContent() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      alert('Search feature coming soon. You searched for: ' + query);
+    }
+
+    function sharePage() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'TroLab Demo',
+          text: 'Check out this decentralized experimental lab demo!',
+          url: window.location.href
         });
-        function installPWA() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(choice => {
-                    if (choice.outcome === 'accepted') console.log('PWA installed');
-                    else console.log('PWA installation declined');
-                    document.getElementById('installBtn').style.display = 'none';
-                });
-            } else {
-                alert('Install option not available. Ensure your browser supports PWA.');
-            }
-        }
-        function runExperiment() {
-            const light = document.getElementById('lightIntensity').value;
-            const sound = document.getElementById('soundFrequency').value;
-            const water = document.getElementById('waterFlow').value;
-            document.getElementById('lightValue').textContent = light;
-            document.getElementById('soundValue').textContent = sound + ' Hz';
-            document.getElementById('waterValue').textContent = water;
-            const result = `Light Intensity: ${light}, Sound Frequency: ${sound} Hz, Water Flow: ${water}`;
-            document.getElementById('resultText').textContent = result;
-            localStorage.setItem('experimentResult', result);
-            new Audio('https://www.soundjay.com/button/beep-01a.mp3').play().catch(() => {});
-        }
-        function logResults() {
-            const result = document.getElementById('resultText').textContent;
-            alert('Logged: ' + result);
-        }
-        function downloadResults() {
-            const result = document.getElementById('resultText').textContent;
-            const csv = 'data:text/csv;charset=utf-8,' + result.replace(/, /g, ',');
-            const link = document.createElement('a');
-            link.setAttribute('href', encodeURI(csv));
-            link.setAttribute('download', 'experiment-results.csv');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-        document.getElementById('lightIntensity').addEventListener('input', e => document.getElementById('lightValue').textContent = e.target.value);
-        document.getElementById('soundFrequency').addEventListener('input', e => document.getElementById('soundValue').textContent = e.target.value + ' Hz');
-        document.getElementById('waterFlow').addEventListener('input', e => document.getElementById('waterValue').textContent = e.target.value);
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/TroLab/service-worker.js')
-                .then(reg => console.log('Service Worker registered:', reg))
-                .catch(err => console.error('Service Worker registration failed:', err));
-        }
-    </script>
+      } else {
+        alert('Share not supported. Copy URL: ' + window.location.href);
+      }
+    }
+  </script>
 </body>
 </html>
