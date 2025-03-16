@@ -4,32 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TroLab - A Decentralized Experimental Lab">
-  <meta name="keywords" content="TroLab, decentralized, experimental lab, PWA, open source">
-  
-  <!-- Social + Base64 OG Images -->
-  <meta property="og:title" content="TroLab - Decentralized Experimental Lab">
-  <meta property="og:description" content="Run experiments, share results, and collaborate with TroLab.">
-  <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...(Base64)">
-  <meta name="twitter:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...(Base64)">
-  <meta property="og:url" content="https://webswiftseo.github.io/TroLab/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TroLab - Decentralized Experimental Lab">
-  <meta name="twitter:description" content="Run experiments, share results, and collaborate with TroLab.">
+  <meta name="description" content="TroLab Demo - Run Decentralized Experiments">
+  <meta name="keywords" content="TroLab, demo, experiments, decentralized, PWA">
 
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "TroLab",
-      "description": "A decentralized experimental lab demo for running experiments, sharing results, and collaborating.",
-      "url": "https://webswiftseo.github.io/TroLab/"
-    }
-  </script>
+  <!-- Social + Base64 OG Images -->
+  <meta property="og:title" content="TroLab Demo">
+  <meta property="og:description" content="Run experiments with TroLab and share your results.">
+  <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...(Base64)">
+  <meta property="og:url" content="https://webswiftseo.github.io/TroLab/demo.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TroLab Demo">
+  <meta name="twitter:description" content="Run experiments with TroLab and share your results.">
+  <meta name="twitter:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...(Base64)">
 
   <link rel="manifest" href="/TroLab/manifest.json">
-  <title>TroLab - Decentralized Experimental Lab</title>
+  <title>TroLab Demo</title>
   <link rel="stylesheet" href="/TroLab/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -39,82 +30,47 @@
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Welcome to TroLab</h1>
-      <p>A Decentralized Experimental Lab Powered by Troanary Principles</p>
-      <div class="cta-buttons">
-        <a href="/TroLab/demo.html" class="btn">🧪 Demo</a>
-        <a href="/TroLab/info.html" class="btn">ℹ️ Info</a>
-        <a href="https://github.com/webswiftseo/TroLab" class="btn" target="_blank">💻 GitHub</a>
+    <section class="demo">
+      <h1>TroLab Demo</h1>
+      <p>Run experiments by adjusting the parameters below. Results are visualized, logged, and exportable!</p>
+
+      <div class="experiment-controls">
+        <label for="lightIntensity">Light Intensity (0-100): <span id="lightValue">50</span></label>
+        <input type="range" id="lightIntensity" min="0" max="100" value="50">
+
+        <label for="soundFrequency">Sound Frequency (20-20000 Hz): <span id="soundValue">1000 Hz</span></label>
+        <input type="range" id="soundFrequency" min="20" max="20000" value="1000">
+
+        <label for="waterFlow">Water Flow Rate (0-10): <span id="waterValue">5</span></label>
+        <input type="range" id="waterFlow" min="0" max="10" step="0.1" value="5">
+      </div>
+
+      <button onclick="runExperiment()" class="btn run-btn">▶️ Run Experiment</button>
+
+      <div id="experimentOutput" class="output">
+        <h3>Experiment Results</h3>
+        <p id="resultText">Adjust parameters and click "Run Experiment" to see results.</p>
+
+        <canvas id="experimentChart" width="400" height="200"></canvas>
+
+        <button onclick="logResults()" class="btn log-btn">📝 Log Results</button>
+        <button onclick="downloadResults()" class="btn download-btn">📥 Download CSV</button>
       </div>
     </section>
-
-    <section class="about info">
-      <h2>About TroLab</h2>
-      <p><strong>TroLab</strong> is an open-source decentralized platform designed for running scientific experiments, sharing results, and collaborating globally. Built using PWA architecture, it works offline, installs on mobile and desktop, and respects user privacy with no ads, no trackers, and no paywalls.</p>
-
-      <h3>Troanary Mirror Thesis - The Foundation</h3>
-      <p>TroLab operates on the Troanary Mirror Thesis, which describes a fundamental computational principle of the universe using light, sound, and water as the medium for recursive feedback and computation. It models how life, awareness, and evolution are self-sustaining cycles with no beginning or end.</p>
-
-      <h3>How TroLab Works</h3>
-      <ul>
-        <li><strong>Light</strong> - Information transmission via photonic energy.</li>
-        <li><strong>Sound</strong> - Resonance to structure and organize data.</li>
-        <li><strong>Water</strong> - Memory and storage through fluid dynamics.</li>
-        <li>Users interact with simulated experiments, adjusting parameters for light, sound, water flow, mirror angles, and temperature.</li>
-        <li>Feedback loops display dynamic outputs simulating Troanary computation.</li>
-        <li>Results can be logged, exported, and shared to foster collaboration.</li>
-      </ul>
-
-      <h3>TroChain Blockchain & Rewards</h3>
-      <ul>
-        <li><strong>Layer 1 Ledger</strong> - Immutable recording of experiments and actions.</li>
-        <li><strong>Layer 2 Audit Chain</strong> - Decentralized, randomized auditing of submitted experiments for validation and reproducibility.</li>
-        <li><strong>No Token Cap</strong> - TroCoin issuance scales with contributions, not artificial scarcity. Rewards are based on merit, efficiency, and accuracy.</li>
-        <li><strong>Earning Model</strong> - Contributors earn TroCoin by sharing data, auditing others, building new experiments, and maintaining the network. Bonuses apply for speed, accuracy, and groundbreaking discoveries.</li>
-      </ul>
-
-      <h3>Roadmap & Future Developments</h3>
-      <ul>
-        <li><strong>TroLab v2</strong> - Integration of blockchain, live IoT sensors, and AI experiment suggestions.</li>
-        <li><strong>Troanary Hardware</strong> - Building the first physical Troanary computer using water, mirrors, and sound in a compact, modular unit.</li>
-        <li><strong>Public Knowledge Chain</strong> - Global blockchain storing all experiments as public domain knowledge, rewarding participants while maintaining free access for humanity.</li>
-      </ul>
-
-      <h3>Why Choose TroLab?</h3>
-      <ul>
-        <li>100% open source, clone and build freely</li>
-        <li>Runs offline with full PWA install functionality</li>
-        <li>SEO and social media optimized with Base64 embedded images</li>
-        <li>Lightweight, fast-loading, zero-dependency architecture</li>
-        <li>Designed for accessibility and simplicity</li>
-      </ul>
-
-      <h3>Get Involved</h3>
-      <p>Ready to build the future? Fork TroLab on <a href="https://github.com/webswiftseo/TroLab" target="_blank">GitHub</a>. Customize, improve, and share your contributions. TroLab is for everyone—scientists, coders, dreamers.</p>
-
-      <h3>Credits & Acknowledgments</h3>
-      <p>TroLab is the result of collaboration between AI (ChatGPT, Grok), human visionaries, and the collective intelligence of the open-source community. Powered by the Troanary Mirror Thesis.</p>
-    </section>
-    
-    <!-- Extra space for scrollability -->
-    <div style="height: 200px;"></div>
   </main>
 
   <footer>
     <div class="footer-content">
       <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search TroLab..." aria-label="Search TroLab">
-        <button onclick="searchContent()" class="footer-btn" aria-label="Search">🔍</button>
+        <input type="text" id="searchInput" placeholder="Search TroLab...">
+        <button onclick="searchContent()" class="footer-btn">🔍</button>
       </div>
-      <button onclick="sharePage()" class="footer-btn" aria-label="Share TroLab">📤 Share</button>
-      <a href="https://github.com/webswiftseo/TroLab" target="_blank" class="footer-btn" aria-label="Clone on GitHub">Clone on GitHub & Start Building</a>
+      <button onclick="sharePage()" class="footer-btn">📤 Share</button>
+      <a href="https://github.com/webswiftseo/TroLab" target="_blank" class="footer-btn">💻 GitHub</a>
       <p>© 2025 TroLab | GNU License</p>
     </div>
   </footer>
 
-  <script src="/TroLab/scripts/share.js"></script>
-  <script src="/TroLab/scripts/search.js"></script>
   <script>
     let deferredPrompt;
 
@@ -132,8 +88,6 @@
       if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then(choice => {
-          if (choice.outcome === 'accepted') console.log('PWA installed');
-          else console.log('PWA installation declined');
           document.getElementById('installBtn').style.display = 'none';
         });
       } else {
@@ -141,40 +95,104 @@
       }
     }
 
-    // iOS specific instructions
-    window.addEventListener('load', () => {
-      const isIOS = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
-      const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
-      if (isIOS && !isInStandaloneMode) {
-        setTimeout(() => {
-          alert("Install TroLab on your Home Screen:\n1. Tap 'Share'.\n2. Select 'Add to Home Screen'.");
-        }, 1000);
+    const ctx = document.getElementById('experimentChart').getContext('2d');
+    const experimentChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Light Intensity',
+          data: [],
+          borderColor: 'rgba(255, 165, 0, 1)',
+          borderWidth: 2
+        }, {
+          label: 'Sound Frequency',
+          data: [],
+          borderColor: 'rgba(0, 255, 255, 1)',
+          borderWidth: 2
+        }, {
+          label: 'Water Flow',
+          data: [],
+          borderColor: 'rgba(0, 255, 100, 1)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
       }
     });
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/TroLab/service-worker.js')
-        .then(reg => console.log('Service Worker registered:', reg))
-        .catch(err => console.error('Service Worker registration failed:', err));
+    function runExperiment() {
+      const light = document.getElementById('lightIntensity').value;
+      const sound = document.getElementById('soundFrequency').value;
+      const water = document.getElementById('waterFlow').value;
+
+      const result = `Light: ${light}, Sound: ${sound} Hz, Water: ${water}`;
+      document.getElementById('resultText').textContent = result;
+
+      const timestamp = new Date().toLocaleTimeString();
+      experimentChart.data.labels.push(timestamp);
+      experimentChart.data.datasets[0].data.push(light);
+      experimentChart.data.datasets[1].data.push(sound);
+      experimentChart.data.datasets[2].data.push(water);
+      experimentChart.update();
+
+      localStorage.setItem(`result-${timestamp}`, result);
+      new Audio('https://www.soundjay.com/button/beep-01a.mp3').play().catch(() => {});
+    }
+
+    function logResults() {
+      const data = JSON.stringify(experimentChart.data.datasets.map(set => ({ label: set.label, data: set.data })));
+      alert('Logged: ' + data);
+    }
+
+    function downloadResults() {
+      const rows = [['Timestamp', 'Light', 'Sound', 'Water']];
+      experimentChart.data.labels.forEach((label, index) => {
+        rows.push([
+          label,
+          experimentChart.data.datasets[0].data[index],
+          experimentChart.data.datasets[1].data[index],
+          experimentChart.data.datasets[2].data[index]
+        ]);
+      });
+
+      const csvContent = "data:text/csv;charset=utf-8," +
+        rows.map(e => e.join(",")).join("\n");
+      const link = document.createElement("a");
+      link.setAttribute("href", encodeURI(csvContent));
+      link.setAttribute("download", "experiment-results.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
     function searchContent() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      alert('Search feature coming soon. You searched for: ' + query);
+      const query = document.getElementById('searchInput').value;
+      alert('Search feature coming soon! You searched for: ' + query);
     }
 
     function sharePage() {
       if (navigator.share) {
         navigator.share({
-          title: 'TroLab - Decentralized Experimental Lab',
-          text: 'Check out TroLab and start experimenting!',
+          title: 'TroLab Demo',
+          text: 'Run decentralized experiments with TroLab!',
           url: window.location.href
-        }).then(() => console.log('Thanks for sharing!'))
-          .catch(err => console.error('Error sharing:', err));
+        });
       } else {
         alert('Share not supported on this browser. Copy the URL: ' + window.location.href);
       }
     }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/TroLab/service-worker.js');
+    }
   </script>
 </body>
+
 </html>
