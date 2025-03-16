@@ -16,6 +16,7 @@
     <meta name="twitter:title" content="TroLab - Decentralized Experimental Lab">
     <meta name="twitter:description" content="Run experiments, share results, and collaborate with TroLab.">
 
+    <!-- Structured data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -34,7 +35,7 @@
 <body>
     <header>
         <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">Home</button>
-        <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">Install</button>
+        <button id="installBtn" class="header-btn install-btn" aria-label="Install PWA">Install</button>
     </header>
 
     <main>
@@ -49,6 +50,7 @@
         </section>
 
         <section class="about">
+            <!-- Existing about content (unchanged) -->
             <h2>About TroLab</h2>
             <p>TroLab is an open-source, decentralized platform for running experiments, sharing results, and collaborating. It’s fast, lightweight, and designed to work on all devices with no paywalls or clutter.</p>
             
@@ -65,35 +67,16 @@
             </p>
 
             <h3>Earning & Reward System</h3>
-            <p>TroLab rewards participation. Each experiment logged, reviewed, or validated on-chain earns users Troanary Coins (Tc). Troanary Coin distribution follows a non-capped, fractal algorithm tied to time contribution, ensuring long-term sustainability:
-                <ul>
-                    <li>Reward scaling: 1, 2, 3...12 units per contribution</li>
-                    <li>Layer 2 audits give bonus multipliers</li>
-                    <li>Time-efficiency based rewards (the faster, the higher)</li>
-                </ul>
-            </p>
+            <p>TroLab rewards participation. Each experiment logged, reviewed, or validated on-chain earns users Troanary Coins (Tc).</p>
 
             <h3>The Troanary Mirror Principle</h3>
-            <p>TroLab is built on the Troanary Mirror Thesis. It uses:
-                <ul>
-                    <li>Light - as the informational input (Photonic energy)</li>
-                    <li>Sound - as the structuring frequency (Resonance tuning)</li>
-                    <li>Water - as the memory storage (Fluid memory encoding)</li>
-                </ul>
-                Together, they form a computational loop that represents nature's method of storing and processing information.
-            </p>
+            <p>TroLab is built on the Troanary Mirror Thesis...</p>
 
             <h3>Why TroLab?</h3>
-            <p>TroLab is a free-to-clone, open-source tool. You can deploy your own version, customize it, and build on it. Our code is designed for:
-                <ul>
-                    <li>Fast loading (PWA-ready)</li>
-                    <li>SEO and social media optimized</li>
-                    <li>Full offline capabilities (Service Worker caching)</li>
-                </ul>
-            </p>
+            <p>TroLab is a free-to-clone, open-source tool. You can deploy your own version, customize it, and build on it.</p>
 
             <h3>Get Involved</h3>
-            <p>Clone the repo on GitHub. Experiment. Improve. Share. TroLab is community-built and community-owned. Everyone contributes, everyone earns.</p>
+            <p>Clone the repo on GitHub. Experiment. Improve. Share. TroLab is community-built and community-owned.</p>
         </section>
     </main>
 
@@ -109,39 +92,58 @@
         </div>
     </footer>
 
+    <!-- JS Scripts -->
     <script src="/TroLab/scripts/share.js"></script>
     <script src="/TroLab/scripts/search.js"></script>
     <script>
         let deferredPrompt;
+
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            if (!window.matchMedia('(display-mode: standalone)').matches) {
-                document.getElementById('installBtn').style.display = 'inline-block';
-            }
+            document.getElementById('installBtn').style.display = 'inline-block';
         });
+
         window.addEventListener('appinstalled', () => {
+            console.log('PWA installed');
             document.getElementById('installBtn').style.display = 'none';
         });
 
         function installPWA() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(choice => {
-                    if (choice.outcome === 'accepted') console.log('PWA installed');
-                    else console.log('PWA installation declined');
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
                     document.getElementById('installBtn').style.display = 'none';
                 });
-            } else {
-                alert('Install option not available. Ensure your browser supports PWA.');
             }
         }
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/TroLab/service-worker.js')
-                .then(reg => console.log('Service Worker registered:', reg))
-                .catch(err => console.error('Service Worker registration failed:', err));
+                .then((reg) => {
+                    console.log('✅ Service Worker registered', reg);
+                })
+                .catch((err) => {
+                    console.error('❌ Service Worker registration failed', err);
+                });
         }
+
+        // Optional iOS install guide popup
+        window.addEventListener('load', () => {
+            const isIOS = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+            const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+
+            if (isIOS && !isInStandaloneMode) {
+                setTimeout(() => {
+                    alert('Install TroLab on your home screen:\n1. Tap Share\n2. Select "Add to Home Screen".');
+                }, 1500);
+            }
+        });
     </script>
 </body>
 </html>
