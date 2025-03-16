@@ -1,24 +1,70 @@
-const cacheName = 'trolab-v1';
+// Update the cache version with each deployment
+const cacheName = 'trolab-v2'; // 🔧 Increment on changes
+
+// Define the assets to cache
 const assets = [
     '/TroLab/',
-    '/TroLab/index.html',
-    '/TroLab/demo.html',
-    '/TroLab/info.html',
-    '/TroLab/style.css',
-    '/TroLab/scripts/share.js',
-    '/TroLab/scripts/search.js'
+    '/TroLab/index.html?v=2',
+    '/TroLab/demo.html?v=2',
+    '/TroLab/info.html?v=2',
+    '/TroLab/style.css?v=2',
+    '/TroLab/scripts/share.js?v=2',
+    '/TroLab/scripts/search.js?v=2'
 ];
-self.addEventListener('install', e => {
-    e.waitUntil(caches.open(cacheName).then(cache => cache.addAll(assets)));
+
+// Install Event - Cache App Shell
+self.addEventListener('install', (event) => {
+    console.log('[Service Worker] Install');
+    self.skipWaiting(); // Activate immediately on update
+    event.waitUntil(
+        caches.open(cacheName)
+            .then((cache) => {
+                console.log('[Service Worker] Caching assets');
+                return cache.addAll(assets);
+            })
+    );
 });
-self.addEventListener('activate', e => {
-    e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== cacheName).map(key => caches.delete(key)))));
+
+// Activate Event - Clean up old caches
+self.addEventListener('activate', (event) => {
+    console.log('[Service Worker] Activate');
+    event.waitUntil(
+        caches.keys().then((keys) => {
+            return Promise.all(
+                keys.filter((key) => key !== cacheName)
+                    .map((key) => {
+                        console.log('[Service Worker] Removing old cache:', key);
+                        return caches.delete(key);
+                    })
+            );
+        })
+    );
+    self.clients.claim(); // Apply changes immediately
 });
-self.addEventListener('fetch', e => {
-    e.respondWith(caches.match(e.request).then(res => res || fetch(e.request).then(fetchRes => {
-        return caches.open(cacheName).then(cache => {
-            cache.put(e.request, fetchRes.clone());
-            return fetchRes;
-        });
-    }).catch(() => new Response('Offline: You are not connected to the internet.', { status: 503, statusText: 'Service Unavailable' }))));
+
+// Fetch Event - Network-first with fallback to cache
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        fetch(event.request)
+            .then((response) => {
+                // Clone and store the updated response in the cache
+                return caches.open(cacheName).then((cache) => {
+                    cache.put(event.request, response.clone());
+                    return response;
+                });
+            })
+            .catch(() => {
+                // If offline, serve from cache or return fallback response
+                return caches.match(event.request)
+                    .then((cachedResponse) => {
+                        if (cachedResponse) {
+                            return cachedResponse;
+                        }
+                        return new Response('Offline: You are not connected to the internet.', {
+                            status: 503,
+                            statusText: 'Service Unavailable'
+                        });
+                    });
+            })
+    );
 });
