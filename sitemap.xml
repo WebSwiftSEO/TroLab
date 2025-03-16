@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://webswiftseo.github.io/TC-Sharing-App/</loc>
-        <lastmod>2025-03-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://webswiftseo.github.io/TC-Sharing-App/demo.html</loc>
-        <lastmod>2025-03-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://webswiftseo.github.io/TC-Sharing-App/info.html</loc>
-        <lastmod>2025-03-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
+    <url><loc>https://webswiftseo.github.io/TroLab/</loc><lastmod>2025-03-15</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+    <url><loc>https://webswiftseo.github.io/TroLab/demo.html</loc><lastmod>2025-03-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://webswiftseo.github.io/TroLab/info.html</loc><lastmod>2025-03-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
