@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="TroLab Demo - Run Decentralized Experiments">
   <meta name="keywords" content="TroLab, demo, experiments, decentralized, PWA">
+  
+  <!-- OG + Base64 Social Media -->
   <meta property="og:title" content="TroLab Demo">
   <meta property="og:description" content="Run experiments with TroLab and share your results.">
   <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...">
@@ -13,6 +15,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TroLab Demo">
   <meta name="twitter:description" content="Run experiments with TroLab and share your results.">
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -22,6 +25,7 @@
       "url": "https://webswiftseo.github.io/TroLab/demo.html"
     }
   </script>
+
   <link rel="manifest" href="/TroLab/manifest.json">
   <title>TroLab Demo</title>
   <link rel="stylesheet" href="/TroLab/style.css">
@@ -30,8 +34,8 @@
 
 <body>
   <header>
-    <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">Home</button>
-    <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">Install</button>
+    <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">🏠 Home</button>
+    <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">📲 Install</button>
   </header>
 
   <main>
@@ -40,23 +44,41 @@
       <p>Adjust the inputs and run an experiment. View your results below.</p>
 
       <div class="experiment-controls">
+
+        <!-- Light, Sound, Water Sliders -->
         <label for="lightIntensity">Light Intensity (0-100): <span id="lightValue">50</span></label>
         <input type="range" id="lightIntensity" min="0" max="100" value="50">
-        
+
         <label for="soundFrequency">Sound Frequency (20-20000 Hz): <span id="soundValue">1000 Hz</span></label>
         <input type="range" id="soundFrequency" min="20" max="20000" value="1000">
-        
+
         <label for="waterFlow">Water Flow Rate (0-10): <span id="waterValue">5</span></label>
         <input type="range" id="waterFlow" min="0" max="10" step="0.1" value="5">
+
+        <!-- New Mirror Adjustment Sliders -->
+        <label for="mirrorX">Mirror Angle X (0-360°): <span id="mirrorXValue">180°</span></label>
+        <input type="range" id="mirrorX" min="0" max="360" value="180">
+
+        <label for="mirrorY">Mirror Angle Y (0-360°): <span id="mirrorYValue">180°</span></label>
+        <input type="range" id="mirrorY" min="0" max="360" value="180">
+
+        <label for="mirrorZ">Mirror Angle Z (0-360°): <span id="mirrorZValue">180°</span></label>
+        <input type="range" id="mirrorZ" min="0" max="360" value="180">
+
       </div>
 
       <button onclick="runExperiment()" class="btn run-btn">Run Experiment</button>
 
       <div class="output">
         <h3>Experiment Output</h3>
+        
+        <!-- Graphs -->
         <canvas id="lightChart" width="400" height="200"></canvas>
         <canvas id="soundChart" width="400" height="200"></canvas>
         <canvas id="waterChart" width="400" height="200"></canvas>
+        <canvas id="mirrorChart" width="400" height="200"></canvas>
+
+        <!-- Computed Color (Visual Output) -->
         <div id="colorOutput" style="width:100px; height:100px; margin: 20px auto; border-radius: 12px; border: 2px solid #ffa500;"></div>
 
         <div id="experimentSummary" class="info" style="margin-top: 1rem;">
@@ -82,17 +104,13 @@
     </div>
   </footer>
 
-  <script src="/TroLab/scripts/share.js"></script>
-  <script src="/TroLab/scripts/search.js"></script>
   <script>
     let deferredPrompt;
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      if (!window.matchMedia('(display-mode: standalone)').matches) {
-        document.getElementById('installBtn').style.display = 'inline-block';
-      }
+      document.getElementById('installBtn').style.display = 'inline-block';
     });
 
     window.addEventListener('appinstalled', () => {
@@ -111,66 +129,56 @@
     }
 
     // Graph data containers
-    const lightData = [];
-    const soundData = [];
-    const waterData = [];
-    const labels = [];
+    const lightData = [], soundData = [], waterData = [], mirrorEfficiencyData = [], labels = [];
 
-    // Create Chart.js graphs
     const lightChartCtx = document.getElementById('lightChart').getContext('2d');
     const soundChartCtx = document.getElementById('soundChart').getContext('2d');
     const waterChartCtx = document.getElementById('waterChart').getContext('2d');
+    const mirrorChartCtx = document.getElementById('mirrorChart').getContext('2d');
 
     const lightChart = new Chart(lightChartCtx, {
       type: 'line',
-      data: {
-        labels,
-        datasets: [{
-          label: 'Light Intensity',
-          data: lightData,
-          borderWidth: 2
-        }]
-      }
+      data: { labels, datasets: [{ label: 'Light Intensity', data: lightData }] }
     });
 
     const soundChart = new Chart(soundChartCtx, {
       type: 'line',
-      data: {
-        labels,
-        datasets: [{
-          label: 'Sound Frequency (Hz)',
-          data: soundData,
-          borderWidth: 2
-        }]
-      }
+      data: { labels, datasets: [{ label: 'Sound Frequency (Hz)', data: soundData }] }
     });
 
     const waterChart = new Chart(waterChartCtx, {
       type: 'line',
-      data: {
-        labels,
-        datasets: [{
-          label: 'Water Flow Rate',
-          data: waterData,
-          borderWidth: 2
-        }]
-      }
+      data: { labels, datasets: [{ label: 'Water Flow Rate', data: waterData }] }
+    });
+
+    const mirrorChart = new Chart(mirrorChartCtx, {
+      type: 'line',
+      data: { labels, datasets: [{ label: 'Mirror Reflection Efficiency (%)', data: mirrorEfficiencyData }] }
     });
 
     function runExperiment() {
-      const light = document.getElementById('lightIntensity').value;
-      const sound = document.getElementById('soundFrequency').value;
-      const water = document.getElementById('waterFlow').value;
+      const light = +document.getElementById('lightIntensity').value;
+      const sound = +document.getElementById('soundFrequency').value;
+      const water = +document.getElementById('waterFlow').value;
+
+      const mirrorX = +document.getElementById('mirrorX').value;
+      const mirrorY = +document.getElementById('mirrorY').value;
+      const mirrorZ = +document.getElementById('mirrorZ').value;
+
+      // Calculate Mirror Efficiency (Simple avg for demo purposes)
+      const mirrorEfficiency = ((mirrorX + mirrorY + mirrorZ) / 1080 * 100).toFixed(2);
 
       const time = new Date().toLocaleTimeString();
       labels.push(time);
       lightData.push(light);
       soundData.push(sound);
       waterData.push(water);
+      mirrorEfficiencyData.push(mirrorEfficiency);
 
       lightChart.update();
       soundChart.update();
       waterChart.update();
+      mirrorChart.update();
 
       const colorHex = generateColorHex(light, sound, water);
       document.getElementById('colorOutput').style.backgroundColor = colorHex;
@@ -180,6 +188,10 @@
         Light Intensity: ${light}
         Sound Frequency: ${sound} Hz
         Water Flow: ${water}
+        Mirror X: ${mirrorX}°
+        Mirror Y: ${mirrorY}°
+        Mirror Z: ${mirrorZ}°
+        Mirror Efficiency: ${mirrorEfficiency}%
         Computed Color: ${colorHex}
       `;
       document.getElementById('resultText').textContent = resultText.trim();
@@ -189,7 +201,7 @@
 
     function generateColorHex(light, sound, water) {
       const r = Math.min(255, Math.round(light * 2.55));
-      const g = Math.min(255, Math.round(sound / 78.43)); // Scale 20-20000 Hz
+      const g = Math.min(255, Math.round(sound / 78.43)); 
       const b = Math.min(255, Math.round(water * 25.5));
       return `rgb(${r}, ${g}, ${b})`;
     }
@@ -210,12 +222,6 @@
       document.body.removeChild(link);
     }
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/TroLab/service-worker.js')
-        .then(reg => console.log('Service Worker registered:', reg))
-        .catch(err => console.error('Service Worker registration failed:', err));
-    }
-
     function searchContent() {
       const query = document.getElementById('searchInput').value.toLowerCase();
       alert('Search feature coming soon. You searched for: ' + query);
@@ -232,6 +238,22 @@
         alert('Share not supported. Copy URL: ' + window.location.href);
       }
     }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/TroLab/service-worker.js')
+        .then(reg => console.log('Service Worker registered:', reg))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    }
+
+    // Add real-time updates on sliders
+    ['lightIntensity', 'soundFrequency', 'waterFlow', 'mirrorX', 'mirrorY', 'mirrorZ'].forEach(id => {
+      document.getElementById(id).addEventListener('input', e => {
+        document.getElementById(`${id}Value`).textContent = `${e.target.value}${id.includes('mirror') ? '°' : id === 'soundFrequency' ? ' Hz' : ''}`;
+      });
+    });
+
   </script>
+
 </body>
+
 </html>
