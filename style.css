@@ -219,4 +219,29 @@ mark {
         max-width: 300px;
         text-align: center;
     }
+    .control-group { position: relative; margin-bottom: 1.5rem; }
+.tooltip { font-size: 0.9rem; color: #aaa; display: block; margin-top: 0.2rem; }
+.action-buttons { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; }
+.reset-btn { background: #ff5555; }
+.reset-btn:hover { background: #ff3333; box-shadow: 0 0 10px #ff5555; }
+.visual-feedback { display: flex; gap: 2rem; justify-content: center; align-items: center; margin: 2rem 0; }
+.mirror-visual { perspective: 600px; }
+.mirror-cube { width: 100px; height: 100px; position: relative; transform-style: preserve-3d; transition: transform 0.5s; }
+.mirror-cube .face { position: absolute; width: 100px; height: 100px; background: #ffa500; opacity: 0.7; border: 1px solid #ff7700; }
+.mirror-cube .front { transform: translateZ(50px); }
+.mirror-cube .back { transform: translateZ(-50px) rotateY(180deg); }
+.mirror-cube .left { transform: translateX(-50px) rotateY(-90deg); }
+.mirror-cube .right { transform: translateX(50px) rotateY(90deg); }
+.mirror-cube .top { transform: translateY(-50px) rotateX(90deg); }
+.mirror-cube .bottom { transform: translateY(50px) rotateX(-90deg); }
+.charts { display: grid; gap: 1rem; margin: 2rem 0; }
+#troanaryEnergy { color: #ffa500; font-weight: bold; margin: 1rem 0; }
+.trochain-log { margin-top: 2rem; }
+#tcBalance { color: #ffa500; font-weight: bold; }
+#transactionHistory { list-style: none; padding: 0; max-height: 200px; overflow-y: auto; }
+#transactionHistory li { padding: 0.5rem; background: #2a2a2a; margin-bottom: 0.5rem; border-radius: 8px; }
+.output-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
+@media (max-width: 600px) {
+    .visual-feedback { flex-direction: column; }
+    .charts { grid-template-columns: 1fr; }
 }
