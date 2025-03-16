@@ -1,255 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TroLab Demo - Run Decentralized Experiments" />
-  <meta name="keywords" content="TroLab, demo, experiments, decentralized, PWA" />
-
-  <!-- OG + Base64 Social Media -->
-  <meta property="og:title" content="TroLab Demo" />
-  <meta property="og:description" content="Run experiments with TroLab and share your results." />
-  <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..." />
-  <meta property="og:url" content="https://webswiftseo.github.io/TroLab/demo.html" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TroLab Demo" />
-  <meta name="twitter:description" content="Run experiments with TroLab and share your results." />
-
-  <script type="application/ld+json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TroLab Demo - Run Decentralized Experiments">
+    <meta name="keywords" content="TroLab, demo, experiments, decentralized, PWA">
+    <meta property="og:title" content="TroLab Demo">
+    <meta property="og:description" content="Run experiments with TroLab and share your results.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=TroLab+Demo">
+    <meta property="og:url" content="https://webswiftseo.github.io/TroLab/demo.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TroLab Demo">
+    <meta name="twitter:description" content="Run experiments with TroLab and share your results.">
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=TroLab+Demo">
+    <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "TroLab Demo",
-      "description": "Run decentralized experiments with TroLab.",
-      "url": "https://webswiftseo.github.io/TroLab/demo.html"
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "TroLab Demo",
+        "description": "Run decentralized experiments with TroLab.",
+        "url": "https://webswiftseo.github.io/TroLab/demo.html"
     }
-  </script>
-
-  <link rel="manifest" href="/TroLab/manifest.json" />
-  <title>TroLab Demo</title>
-  <link rel="stylesheet" href="/TroLab/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </script>
+    <link rel="manifest" href="/TroLab/manifest.json">
+    <title>TroLab Demo</title>
+    <link rel="stylesheet" href="/TroLab/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-  <header>
-    <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">🏠 Home</button>
-    <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">📲 Install</button>
-  </header>
+    <header>
+        <button onclick="location.href='/TroLab/'" class="header-btn" aria-label="Home">🏠 Home</button>
+        <button id="installBtn" onclick="installPWA()" class="header-btn install-btn" aria-label="Install PWA">📲 Install</button>
+    </header>
 
-  <main>
-    <section class="demo">
-      <h1>TroLab Experiment Demo</h1>
-      <p>Adjust the inputs and run an experiment. View your results below.</p>
+    <main>
+        <section class="demo">
+            <h1>TroLab Experiment Demo</h1>
+            <p>Explore the Troanary System by adjusting Light, Sound, Water, and Mirror parameters to simulate recursive feedback loops.</p>
 
-      <div class="experiment-controls">
-        <!-- Light, Sound, Water Sliders -->
-        <label for="lightIntensity">Light Intensity (0-100): <span id="lightValue">50</span></label>
-        <input type="range" id="lightIntensity" min="0" max="100" value="50" />
+            <div class="experiment-controls">
+                <div class="control-group">
+                    <label for="lightIntensity">Light Intensity (0-100): <span id="lightValue">50</span></label>
+                    <span class="tooltip">Light represents the input data stream (Information).</span>
+                    <input type="range" id="lightIntensity" min="0" max="100" value="50" aria-label="Light Intensity Slider">
+                </div>
+                <div class="control-group">
+                    <label for="soundFrequency">Sound Frequency (20-20000 Hz): <span id="soundValue">1000 Hz</span></label>
+                    <span class="tooltip">Sound structures and organizes data (Frequency).</span>
+                    <input type="range" id="soundFrequency" min="20" max="20000" value="1000" aria-label="Sound Frequency Slider">
+                </div>
+                <div class="control-group">
+                    <label for="waterFlow">Water Flow Rate (0-10): <span id="waterValue">5</span></label>
+                    <span class="tooltip">Water acts as memory and processing medium.</span>
+                    <input type="range" id="waterFlow" min="0" max="10" step="0.1" value="5" aria-label="Water Flow Rate Slider">
+                </div>
+                <div class="control-group">
+                    <label for="waterTemp">Water Temperature (0-100°C): <span id="waterTempValue">20°C</span></label>
+                    <span class="tooltip">Temperature affects water's memory capacity.</span>
+                    <input type="range" id="waterTemp" min="0" max="100" step="1" value="20" aria-label="Water Temperature Slider">
+                </div>
+                <div class="control-group">
+                    <label for="mirrorX">Mirror Angle X (0-360°): <span id="mirrorXValue">180°</span></label>
+                    <span class="tooltip">Mirrors reflect data, creating recursive loops.</span>
+                    <input type="range" id="mirrorX" min="0" max="360" value="180" aria-label="Mirror Angle X Slider">
+                </div>
+                <div class="control-group">
+                    <label for="mirrorY">Mirror Angle Y (0-360°): <span id="mirrorYValue">180°</span></label>
+                    <span class="tooltip">Adjust Y angle for reflection strength.</span>
+                    <input type="range" id="mirrorY" min="0" max="360" value="180" aria-label="Mirror Angle Y Slider">
+                </div>
+                <div class="control-group">
+                    <label for="mirrorZ">Mirror Angle Z (0-360°): <span id="mirrorZValue">180°</span></label>
+                    <span class="tooltip">Z angle influences recursive feedback.</span>
+                    <input type="range" id="mirrorZ" min="0" max="360" value="180" aria-label="Mirror Angle Z Slider">
+                </div>
+            </div>
 
-        <label for="soundFrequency">Sound Frequency (20-20000 Hz): <span id="soundValue">1000 Hz</span></label>
-        <input type="range" id="soundFrequency" min="20" max="20000" value="1000" />
+            <div class="action-buttons">
+                <button onclick="runExperiment()" class="btn run-btn" aria-label="Run Experiment">Run Experiment</button>
+                <button onclick="resetExperiment()" class="btn reset-btn" aria-label="Reset Experiment">Reset</button>
+            </div>
 
-        <label for="waterFlow">Water Flow Rate (0-10): <span id="waterValue">5</span></label>
-        <input type="range" id="waterFlow" min="0" max="10" step="0.1" value="5" />
+            <div class="output">
+                <h3>Experiment Output</h3>
+                <p id="troanaryEnergy">Troanary Energy Output: 0</p>
+                <div class="visual-feedback">
+                    <div id="colorOutput" style="width: 120px; height: 120px; margin: 1rem auto; border-radius: 12px; border: 2px solid #ffa500;"></div>
+                    <div class="mirror-visual">
+                        <div id="mirrorCube" class="mirror-cube">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="charts">
+                    <canvas id="lightChart" width="400" height="200"></canvas>
+                    <canvas id="soundChart" width="400" height="200"></canvas>
+                    <canvas id="waterFlowChart" width="400" height="200"></canvas>
+                    <canvas id="waterTempChart" width="400" height="200"></canvas>
+                    <canvas id="mirrorChart" width="400" height="200"></canvas>
+                </div>
+                <div id="experimentSummary" class="info">
+                    <p><strong>Summary</strong></p>
+                    <p id="resultText">Run an experiment to see results.</p>
+                </div>
+                <div class="trochain-log">
+                    <h3>TroChain Log</h3>
+                    <p id="tcBalance">Troanary Coin (Tc) Balance: 0</p>
+                    <ul id="transactionHistory"></ul>
+                </div>
+                <div class="output-buttons">
+                    <button onclick="logResults()" class="btn log-btn" aria-label="Log Results">Log Results</button>
+                    <button onclick="downloadResults()" class="btn download-btn" aria-label="Download Results">Download CSV</button>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        <!-- New Mirror Adjustment Sliders -->
-        <label for="mirrorX">Mirror Angle X (0-360°): <span id="mirrorXValue">180°</span></label>
-        <input type="range" id="mirrorX" min="0" max="360" value="180" />
+    <div style="height: 200px;"></div>
 
-        <label for="mirrorY">Mirror Angle Y (0-360°): <span id="mirrorYValue">180°</span></label>
-        <input type="range" id="mirrorY" min="0" max="360" value="180" />
-
-        <label for="mirrorZ">Mirror Angle Z (0-360°): <span id="mirrorZValue">180°</span></label>
-        <input type="range" id="mirrorZ" min="0" max="360" value="180" />
-      </div>
-
-      <button onclick="runExperiment()" class="btn run-btn">Run Experiment</button>
-
-      <div class="output">
-        <h3>Experiment Output</h3>
-
-        <!-- Graphs -->
-        <canvas id="lightChart" width="400" height="200"></canvas>
-        <canvas id="soundChart" width="400" height="200"></canvas>
-        <canvas id="waterChart" width="400" height="200"></canvas>
-        <canvas id="mirrorChart" width="400" height="200"></canvas>
-
-        <!-- Computed Color (Visual Output) -->
-        <div id="colorOutput"
-          style="width:100px; height:100px; margin: 20px auto; border-radius: 12px; border: 2px solid #ffa500;">
+    <footer>
+        <div class="footer-content">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search TroLab..." aria-label="Search TroLab">
+                <button onclick="searchContent()" class="footer-btn" aria-label="Search">🔍</button>
+            </div>
+            <button onclick="sharePage()" class="footer-btn" aria-label="Share TroLab Demo">📤 Share</button>
+            <a href="https://github.com/webswiftseo/TroLab" target="_blank" class="footer-btn" aria-label="Clone on GitHub">Clone on GitHub</a>
+            <p>© 2025 TroLab | GNU License</p>
         </div>
+    </footer>
 
-        <div id="experimentSummary" class="info" style="margin-top: 1rem;">
-          <p><strong>Summary</strong></p>
-          <p id="resultText">Run an experiment to see results.</p>
-        </div>
-
-        <button onclick="logResults()" class="btn log-btn">Log Results</button>
-        <button onclick="downloadResults()" class="btn download-btn">Download CSV</button>
-      </div>
-    </section>
-  </main>
-
-  <!-- Extra space for scrollability -->
-  <div style="height: 200px;"></div>
-
-  <footer>
-    <div class="footer-content">
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search TroLab..." />
-        <button onclick="searchContent()" class="footer-btn">🔍</button>
-      </div>
-      <button onclick="sharePage()" class="footer-btn">📤 Share</button>
-      <a href="https://github.com/webswiftseo/TroLab" target="_blank" class="footer-btn">Clone on GitHub</a>
-      <p>© 2025 TroLab | GNU License</p>
-    </div>
-  </footer>
-
-  <script>
-    let deferredPrompt;
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      document.getElementById('installBtn').style.display = 'inline-block';
-    });
-
-    window.addEventListener('appinstalled', () => {
-      document.getElementById('installBtn').style.display = 'none';
-    });
-
-    function installPWA() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(choice => {
-          document.getElementById('installBtn').style.display = 'none';
+    <script>
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!window.matchMedia('(display-mode: standalone)').matches) {
+                document.getElementById('installBtn').style.display = 'inline-block';
+            }
         });
-      } else {
-        alert('Install option not available. Ensure your browser supports PWA.');
-      }
-    }
-
-    // Graph data containers
-    const labels = [], lightData = [], soundData = [], waterData = [], mirrorEfficiencyData = [];
-
-    // Chart instances
-    const lightChart = new Chart(document.getElementById('lightChart').getContext('2d'), {
-      type: 'line',
-      data: { labels, datasets: [{ label: 'Light Intensity', data: lightData }] }
-    });
-
-    const soundChart = new Chart(document.getElementById('soundChart').getContext('2d'), {
-      type: 'line',
-      data: { labels, datasets: [{ label: 'Sound Frequency (Hz)', data: soundData }] }
-    });
-
-    const waterChart = new Chart(document.getElementById('waterChart').getContext('2d'), {
-      type: 'line',
-      data: { labels, datasets: [{ label: 'Water Flow Rate', data: waterData }] }
-    });
-
-    const mirrorChart = new Chart(document.getElementById('mirrorChart').getContext('2d'), {
-      type: 'line',
-      data: { labels, datasets: [{ label: 'Mirror Reflection Efficiency (%)', data: mirrorEfficiencyData }] }
-    });
-
-    function runExperiment() {
-      const light = +document.getElementById('lightIntensity').value;
-      const sound = +document.getElementById('soundFrequency').value;
-      const water = +document.getElementById('waterFlow').value;
-      const mirrorX = +document.getElementById('mirrorX').value;
-      const mirrorY = +document.getElementById('mirrorY').value;
-      const mirrorZ = +document.getElementById('mirrorZ').value;
-
-      // Mirror efficiency calculation (simplified average for now)
-      const mirrorEfficiency = ((mirrorX + mirrorY + mirrorZ) / 1080 * 100).toFixed(2);
-
-      const time = new Date().toLocaleTimeString();
-      labels.push(time);
-      lightData.push(light);
-      soundData.push(sound);
-      waterData.push(water);
-      mirrorEfficiencyData.push(mirrorEfficiency);
-
-      lightChart.update();
-      soundChart.update();
-      waterChart.update();
-      mirrorChart.update();
-
-      const colorHex = generateColorHex(light, sound, water);
-      document.getElementById('colorOutput').style.backgroundColor = colorHex;
-
-      const resultText = `
-        Time: ${time}
-        Light Intensity: ${light}
-        Sound Frequency: ${sound} Hz
-        Water Flow: ${water}
-        Mirror X: ${mirrorX}°
-        Mirror Y: ${mirrorY}°
-        Mirror Z: ${mirrorZ}°
-        Mirror Efficiency: ${mirrorEfficiency}%
-        Computed Color: ${colorHex}
-      `;
-      document.getElementById('resultText').textContent = resultText.trim();
-      localStorage.setItem('experimentResult', resultText);
-    }
-
-    function generateColorHex(light, sound, water) {
-      const r = Math.min(255, Math.round(light * 2.55));
-      const g = Math.min(255, Math.round(sound / 78.43));
-      const b = Math.min(255, Math.round(water * 25.5));
-      return `rgb(${r}, ${g}, ${b})`;
-    }
-
-    function logResults() {
-      const result = document.getElementById('resultText').textContent;
-      alert('Logged: ' + result);
-    }
-
-    function downloadResults() {
-      const result = document.getElementById('resultText').textContent;
-      const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(result.replace(/\n/g, ','));
-      const link = document.createElement('a');
-      link.setAttribute('href', csvContent);
-      link.setAttribute('download', 'experiment-results.csv');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    function searchContent() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      alert('Search feature coming soon. You searched for: ' + query);
-    }
-
-    function sharePage() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'TroLab Demo',
-          text: 'Check out this decentralized experimental lab demo!',
-          url: window.location.href
+        window.addEventListener('appinstalled', () => {
+            document.getElementById('installBtn').style.display = 'none';
         });
-      } else {
-        alert('Share not supported. Copy URL: ' + window.location.href);
-      }
-    }
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(choice => {
+                    document.getElementById('installBtn').style.display = 'none';
+                });
+            } else {
+                alert('Install option not available. Ensure your browser supports PWA.');
+            }
+        }
 
-    // Real-time updates on sliders
-    ['lightIntensity', 'soundFrequency', 'waterFlow', 'mirrorX', 'mirrorY', 'mirrorZ'].forEach(id => {
-      document.getElementById(id).addEventListener('input', e => {
-        const suffix = id.includes('mirror') ? '°' : id === 'soundFrequency' ? ' Hz' : '';
-        document.getElementById(`${id}Value`).textContent = `${e.target.value}${suffix}`;
-      });
-    });
+        // TroChain Simulation
+        let tcBalance = localStorage.getItem('tcBalance') ? parseInt(localStorage.getItem('tcBalance')) : 0;
+        let blockchainLog = localStorage.getItem('blockchainLog') ? JSON.parse(localStorage.getItem('blockchainLog')) : [];
+        document.getElementById('tcBalance').textContent = `Troanary Coin (Tc) Balance: ${tcBalance}`;
+        updateTransactionHistory();
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/TroLab/service-worker.js')
-        .then(reg => console.log('Service Worker registered:', reg))
-        .catch(err => console.error('Service Worker registration failed:', err));
-    }
-  </script>
+        // Chart Data
+        const labels = [], lightData = [], soundData = [], waterFlowData = [], waterTempData = [], mirrorEfficiencyData = [];
+        const chartOptions = {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true, grid: { color: '#ffa500' } },
+                x: { grid: { color: '#ffa500' } }
+            },
+            plugins: { legend: { labels: { color: '#fff' } } }
+        };
+        const chartConfig = (label, data, color) => ({
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{ label, data, borderColor: color, backgroundColor: color + '80', fill: false }]
+            },
+            options: chartOptions
+        });
+
+        const lightChart = new Chart(document.getElementById('lightChart').getContext('2d'), chartConfig('Light Intensity', lightData, '#ff5555'));
+        const soundChart = new Chart(document.getElementById('soundChart').getContext('2d'), chartConfig('Sound Frequency (Hz)', soundData, '#55ff55'));
+        const waterFlowChart = new Chart(document.getElementById('waterFlowChart').getContext('2d'), chartConfig('Water Flow Rate', waterFlowData, '#5555ff'));
+        const waterTempChart = new Chart(document.getElementById('waterTempChart').getContext('2d'), chartConfig('Water Temperature (°C)', waterTempData, '#55aaff'));
+        const mirrorChart = new Chart(document.getElementById('mirrorChart').getContext('2d'), chartConfig('Mirror Reflection Efficiency (%)', mirrorEfficiencyData, '#ffa500'));
+
+        function runExperiment() {
+            const light = +document.getElementById('lightIntensity').value;
+            const sound = +document.getElementById('soundFrequency').value;
+            const waterFlow = +document.getElementById('waterFlow').value;
+            const waterTemp = +document.getElementById('waterTemp').value;
+            const mirrorX = +document.getElementById('mirrorX').value;
+            const mirrorY = +document.getElementById('mirrorY').value;
+            const mirrorZ = +document.getElementById('mirrorZ').value;
+
+            // Troanary Recursive Feedback (3 iterations)
+            let troanaryOutput = { light, sound, waterFlow, waterTemp };
+            for (let i = 0; i < 3; i++) {
+                troanaryOutput.light = (troanaryOutput.light * 0.9 + troanaryOutput.sound * 0.05 + troanaryOutput.waterFlow * 0.05) % 100;
+                troanaryOutput.sound = (troanaryOutput.sound * 0.9 + troanaryOutput.light * 0.05 + troanaryOutput.waterTemp * 0.05) % 20000;
+                troanaryOutput.waterFlow = (troanaryOutput.waterFlow * 0.9 + troanaryOutput.light * 0.05 + troanaryOutput.sound * 0.05) % 10;
+                troanaryOutput.waterTemp = (troanaryOutput.waterTemp * 0.9 + troanaryOutput.waterFlow * 0.05 + troanaryOutput.light * 0.05) % 100;
+            }
+
+            // Troanary Energy Output
+            const troanaryEnergy = (troanaryOutput.light * 0.3 + troanaryOutput.sound * 0.0001 + troanaryOutput.waterFlow * 5 + troanaryOutput.waterTemp * 0.2).toFixed(2);
+            document.getElementById('troanaryEnergy').textContent = `Troanary Energy Output: ${troanaryEnergy}`;
+
+            // Mirror Efficiency
+            const mirrorEfficiency = ((mirrorX + mirrorY + mirrorZ) / 1080 * 100).toFixed(2);
+
+            // Update Charts
+            const time = new Date().toLocaleTimeString();
+            labels.push(time);
+            lightData.push(light);
+            soundData.push(sound);
+            waterFlowData.push(waterFlow);
+            waterTempData.push(waterTemp);
+            mirrorEfficiencyData.push(mirrorEfficiency);
+            lightChart.update();
+            soundChart.update();
+            waterFlowChart.update();
+            waterTempChart.update();
+            mirrorChart.update();
+
+            // Update Color Output
+            const r = Math.min(255, Math.round(light * 2.55));
+            const g = Math.min(255, Math.round(sound / 78.43));
+            const b = Math.min(255, Math.round((waterFlow * 10 + waterTemp) * 1.275));
+            const opacity = (mirrorEfficiency / 100).toFixed(2);
+            document.getElementById('colorOutput').style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+
+            // Update Mirror Visualization
+            document.getElementById('mirrorCube').style.transform = `rotateX(${mirrorX}deg) rotateY(${mirrorY}deg) rotateZ(${mirrorZ}deg)`;
+
+            // Summary
+            const resultText = `
+                Time: ${time}
+                Light Intensity: ${light}
+                Sound Frequency: ${sound} Hz
+                Water Flow: ${waterFlow}
+                Water Temp: ${waterTemp}°C
+                Mirror X: ${mirrorX}°
+                Mirror Y: ${mirrorY}°
+                Mirror Z: ${mirrorZ}°
+                Mirror Efficiency: ${mirrorEfficiency}%
+                Troanary Energy: ${troanaryEnergy}
+                Computed Color: rgba(${r}, ${g}, ${b}, ${opacity})
+            `;
+            document.getElementById('resultText').textContent = resultText.trim();
+            localStorage.setItem('experimentResult', resultText);
+
+            // TroChain Simulation
+            const transaction = {
+                experimentId: Date.now().toString(),
+                parameters: { light, sound, waterFlow, waterTemp, mirrorX, mirrorY, mirrorZ },
+                result: { troanaryEnergy, mirrorEfficiency, color: `rgba(${r}, ${g}, ${b}, ${opacity})` },
+                timestamp: time,
+                contributorId: 'anonymous',
+                observerHash: btoa('anonymous' + Date.now())
+            };
+            blockchainLog.push(transaction);
+            localStorage.setItem('blockchainLog', JSON.stringify(blockchainLog));
+
+            // Simulated Validation
+            setTimeout(() => {
+                const isValid = true; // Mock validation
+                if (isValid) {
+                    tcBalance += 10;
+                    localStorage.setItem('tcBalance', tcBalance);
+                    document.getElementById('tcBalance').textContent = `Troanary Coin (Tc) Balance: ${tcBalance}`;
+                    alert('Experiment validated on TroChain! +10 Tc');
+                    updateTransactionHistory();
+                }
+            }, 1000);
+        }
+
+        function resetExperiment() {
+            labels.length = 0;
+            lightData.length = 0;
+            soundData.length = 0;
+            waterFlowData.length = 0;
+            waterTempData.length = 0;
+            mirrorEfficiencyData.length = 0;
+            lightChart.update();
+            soundChart.update();
+            waterFlowChart.update();
+            waterTempChart.update();
+            mirrorChart.update();
+            document.getElementById('resultText').textContent = 'Run an experiment to see results.';
+            document.getElementById('troanaryEnergy').textContent = 'Troanary Energy Output: 0';
+            document.getElementById('colorOutput').style.backgroundColor = '#1a1a1a';
+            document.getElementById('mirrorCube').style.transform = 'rotateX(180deg) rotateY(180deg) rotateZ(180deg)';
+        }
+
+        function updateTransactionHistory() {
+            const history = document.getElementById('transactionHistory');
+            history.innerHTML = '';
+            blockchainLog.forEach(tx => {
+                const li = document.createElement('li');
+                li.textContent = `Experiment ${tx.experimentId} at ${tx.timestamp}: Troanary Energy ${tx.result.troanaryEnergy}`;
+                history.appendChild(li);
+            });
+        }
+
+        function logResults() {
+            const result = document.getElementById('resultText').textContent;
+            alert('Logged to TroChain: ' + result + '\nBlockchain Log: ' + JSON.stringify(blockchainLog));
+        }
+
+        function downloadResults() {
+            const result = document.getElementById('resultText').textContent;
+            const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(result.replace(/\n/g, ','));
+            const link = document.createElement('a');
+            link.setAttribute('href', csvContent);
+            link.setAttribute('download', 'experiment-results.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function searchContent() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!query) return;
+            const content = document.body.innerText.toLowerCase();
+            if (content.includes(query)) {
+                const regex = new RegExp(query, 'gi');
+                const main = document.querySelector('main');
+                main.innerHTML = main.innerHTML.replace(regex, match => `<mark>${match}</mark>`);
+                const firstMatch = document.querySelector('mark');
+                if (firstMatch) firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert('No matches found for: ' + query);
+            }
+        }
+
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'TroLab Demo',
+                    text: 'Check out this decentralized experimental lab demo!',
+                    url: window.location.href
+                }).catch(() => {
+                    navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied to clipboard!'));
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied to clipboard!'));
+            }
+        }
+
+        ['lightIntensity', 'soundFrequency', 'waterFlow', 'waterTemp', 'mirrorX', 'mirrorY', 'mirrorZ'].forEach(id => {
+            document.getElementById(id).addEventListener('input', e => {
+                const suffix = id === 'soundFrequency' ? ' Hz' : id === 'waterTemp' ? '°C' : id.includes('mirror') ? '°' : '';
+                document.getElementById(`${id}Value`).textContent = `${e.target.value}${suffix}`;
+            });
+        });
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/TroLab/service-worker.js')
+                .then(reg => console.log('Service Worker registered:', reg))
+                .catch(err => console.error('Service Worker registration failed:', err));
+        }
+    </script>
 </body>
-
 </html>
