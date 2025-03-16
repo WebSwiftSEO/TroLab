@@ -3,158 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TroLab - A decentralized experimental lab demo for running experiments, sharing results, and collaborating.">
-    <meta name="keywords" content="TroLab, decentralized, experimental lab, PWA, open source">
-    <meta name="author" content="TroLab Team">
-    <!-- Open Graph -->
+    <meta name="description" content="TroLab - A Decentralized Experimental Lab">
+    <meta name="keywords" content="TroLab, decentralized, experimental lab, PWA">
+    <!-- Open Graph (placeholder image URL) -->
     <meta property="og:title" content="TroLab - Decentralized Experimental Lab">
-    <meta property="og:description" content="Run experiments, share results, and collaborate with TroLab, a decentralized PWA prototype.">
-    <meta property="og:image" content="/assets/logo.png">
-    <meta property="og:url" content="https://webswiftseo.github.io/TC-Sharing-App/">
-    <meta property="og:type" content="website">
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TroLab - Decentralized Experimental Lab">
-    <meta name="twitter:description" content="Run experiments, share results, and collaborate with TroLab, a decentralized PWA prototype.">
-    <meta name="twitter:image" content="/assets/logo.png">
+    <meta property="og:description" content="Run experiments, share results, and collaborate with TroLab.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=TroLab">
+    <meta property="og:url" content="https://webswiftseo.github.io/TroLab/">
     <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/png" href="/icons/icon-192x192.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "TroLab",
-        "description": "A decentralized experimental lab demo for running experiments, sharing results, and collaborating.",
-        "url": "https://webswiftseo.github.io/TC-Sharing-App/"
-    }
-    </script>
-    <title>TroLab - Decentralized Experimental Lab</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="manifest" href="/TroLab/manifest.json">
+    <title>TroLab</title>
+    <style>
+        body { background: #1a1a1a; color: #fff; font-family: Arial, sans-serif; margin: 0; }
+        header { background: #1a1a1a; padding: 1rem; display: flex; justify-content: space-between; }
+        header button { background: #ffa500; border-radius: 12px; padding: 0.5rem 1rem; border: none; cursor: pointer; }
+        header button:hover { background: #ff7700; box-shadow: 0 0 10px #ffa500; transition: all 0.3s; }
+        main { padding: 2rem; text-align: center; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .btn { background: #ffa500; border-radius: 12px; padding: 0.8rem 1.5rem; text-decoration: none; color: #1a1a1a; }
+        .btn:hover { background: #ff7700; box-shadow: 0 0 10px #ffa500; transition: all 0.3s; }
+        footer { background: #1a1a1a; padding: 1rem; text-align: center; }
+        footer .footer-content { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        footer input { padding: 0.5rem; border-radius: 12px; border: 1px solid #ffa500; background: #2a2a2a; color: #fff; }
+        footer button, footer a { background: #ffa500; border-radius: 12px; padding: 0.5rem 1rem; border: none; text-decoration: none; color: #1a1a1a; }
+        footer button:hover, footer a:hover { background: #ff7700; box-shadow: 0 0 10px #ffa500; transition: all 0.3s; }
+    </style>
 </head>
 <body>
     <header>
-        <a href="/index.html" aria-label="Go to TroLab Home">
-            <img src="/assets/logo.png" alt="TroLab Logo" class="logo">
-        </a>
+        <button onclick="location.href='/TroLab/'" aria-label="Home">Home</button>
+        <button id="installBtn" onclick="installPWA()" aria-label="Install PWA">Install</button>
     </header>
-
     <main>
-        <section class="hero">
-            <h1>Welcome to TroLab</h1>
-            <p>Decentralized Experimental Lab Demo</p>
-            <div class="cta-buttons">
-                <a href="/demo.html" class="btn">Demo</a>
-                <a href="/info.html" class="btn">Info</a>
-            </div>
-        </section>
+        <h1>Welcome to TroLab</h1>
+        <p>A Decentralized Experimental Lab</p>
+        <div>
+            <a href="/TroLab/demo.html" class="btn">Demo</a>
+            <a href="/TroLab/info.html" class="btn">Info</a>
+            <a href="https://github.com/webswiftseo/TroLab" class="btn">GitHub</a>
+        </div>
+        <p>TroLab is an open-source platform for running experiments, sharing results, and collaborating in a decentralized environment.</p>
     </main>
-
     <footer>
         <div class="footer-content">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search TroLab..." aria-label="Search TroLab">
-                <button onclick="searchContent()" aria-label="Search">🔍</button>
-            </div>
-            <button onclick="sharePage()" class="btn share-btn" aria-label="Share TroLab">Share</button>
-            <button id="installBtn" onclick="installPWA()" class="btn install-btn" aria-label="Install TroLab PWA">Install PWA</button>
-            <a href="https://github.com/webswiftseo/TC-Sharing-App" target="_blank" class="btn github-btn" aria-label="View TroLab on GitHub">GitHub Repo</a>
+            <input type="text" id="searchInput" placeholder="Search..." aria-label="Search">
+            <button onclick="searchContent()" aria-label="Search">🔍</button>
+            <button onclick="sharePage()" aria-label="Share">📤</button>
+            <a href="https://github.com/webswiftseo/TroLab" aria-label="Clone on GitHub">Clone on GitHub & Start Building</a>
+            <p>© 2025 TroLab | GNU License</p>
         </div>
     </footer>
-
     <script>
         let deferredPrompt;
-
-        // PWA Install Prompt
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            console.log('Install prompt captured');
-            // Show the install button if not already installed
-            if (!window.matchMedia('(display-mode: standalone)').matches) {
-                document.getElementById('installBtn').style.display = 'inline-block';
-            }
-        });
-
-        // Check if app is already installed
-        window.addEventListener('appinstalled', () => {
-            console.log('PWA installed successfully');
-            document.getElementById('installBtn').style.display = 'none';
-        });
-
-        // Install PWA
-        function installPWA() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(choice => {
-                    if (choice.outcome === 'accepted') {
-                        console.log('PWA installed successfully');
-                    } else {
-                        console.log('PWA installation declined');
-                    }
-                    // Hide the install button instead of setting deferredPrompt to null
-                    document.getElementById('installBtn').style.display = 'none';
-                });
-            } else {
-                alert('Install option not available. Ensure your browser supports PWA installation.');
-            }
-        }
-
-        // Share Page
-        function sharePage() {
-            const shareData = {
-                title: 'TroLab - Decentralized Experimental Lab',
-                text: 'Run experiments, share results, and collaborate with TroLab, a decentralized PWA prototype.',
-                url: window.location.href
-            };
-            if (navigator.share) {
-                navigator.share(shareData).then(() => {
-                    console.log('Shared successfully');
-                }).catch(err => {
-                    console.log('Error sharing:', err);
-                    fallbackShare(shareData);
-                });
-            } else {
-                fallbackShare(shareData);
-            }
-        }
-
-        function fallbackShare(shareData) {
-            navigator.clipboard.writeText(shareData.url).then(() => {
-                alert('Link copied to clipboard: ' + shareData.url);
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-            });
-        }
-
-        // Search Content
-        function searchContent() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            if (!query) return;
-            const content = document.body.innerText.toLowerCase();
-            if (content.includes(query)) {
-                // Highlight the keyword (basic implementation)
-                const regex = new RegExp(query, 'gi');
-                const main = document.querySelector('main');
-                main.innerHTML = main.innerHTML.replace(regex, match => `<mark>${match}</mark>`);
-                // Scroll to first match
-                const firstMatch = document.querySelector('mark');
-                if (firstMatch) firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                alert('No matches found for: ' + query);
-            }
-        }
-
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js').then(reg => {
-                console.log('Service Worker registered:', reg);
-            }).catch(err => {
-                console.error('Service Worker registration failed:', err);
-            });
-        }
+        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; document.getElementById('installBtn').style.display = 'inline'; });
+        window.addEventListener('appinstalled', () => { document.getElementById('installBtn').style.display = 'none'; });
+        function installPWA() { if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then(() => document.getElementById('installBtn').style.display = 'none'); } else alert('Install not available'); }
+        function sharePage() { if (navigator.share) navigator.share({ title: 'TroLab', text: 'Check out TroLab!', url: location.href }).catch(() => navigator.clipboard.writeText(location.href)); else navigator.clipboard.writeText(location.href); }
+        function searchContent() { const q = document.getElementById('searchInput').value.toLowerCase(); if (q) { document.body.innerHTML = document.body.innerHTML.replace(new RegExp(q, 'gi'), '<mark>$&</mark>'); } }
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('/TroLab/service-worker.js');
     </script>
 </body>
 </html>
