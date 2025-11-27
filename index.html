@@ -177,5 +177,44 @@
     }
   </script>
 
+  <footer style="padding: 40px 20px; text-align: center; background: #111; margin-top: 60px;">
+  <a href="https://yliacallan.github.io/" 
+     target="_blank" 
+     rel="noopener" 
+     style="
+       color: #fff;
+       text-decoration: none;
+       font-family: 'Helvetica Neue', Arial, sans-serif;
+       font-size: 15px;
+       letter-spacing: 0.5px;
+       position: relative;
+       transition: all 0.35s ease;
+       text-shadow: 0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);
+     "
+     onmouseover="this.style.transform='translateY(-2px)'; this.style.textShadow='0 0 20px rgba(0,0,0,1), 0 0 30px rgba(0,0,0,0.8)'"
+     onmouseout="this.style.transform='translateY(0)'; this.style.textShadow='0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)'">
+     
+     Designed by Ylia Callan - Guitarist • Author
+     
+     <!-- Animated underline -->
+     <span style="
+       position: absolute;
+       left: 0; bottom: -4px; width: 0; height: 1px;
+       background: #fff;
+       transition: width 0.4s ease;
+     "></span>
+  </a>
+
+  <script>
+    // Add the animated underline on hover (pure JS, tiny)
+    document.querySelector('footer a').addEventListener('mouseenter', e => {
+      e.target.querySelector('span').style.width = '100%';
+    });
+    document.querySelector('footer a').addEventListener('mouseleave', e => {
+      e.target.querySelector('span').style.width = '0';
+    });
+  </script>
+</footer>
+
 </body>
 </html>
